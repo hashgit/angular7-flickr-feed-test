@@ -10,9 +10,11 @@
     <input placeholder="tags to search" [(ngModel)]="tags" />
     <button (click)="search()">Search</button>
   </div>
-  <div class="image" *ngFor="let image of images; let i=index;">
-    <div>{{image.title}}</div>
-    <img src="{{image.media.m}}" />
-    <div class="tags">{{image.tags}}</div>
+  <div class="image" *ngFor="let image of images; let i=index;" (deferLoad)="image.show = true">
+    <div>{{image.data.title}}</div>
+    <ng-container *ngIf="image.show">
+      <img src="{{image.data.media.m}}">
+    </ng-container>
+    <div class="tags">{{image.data.tags}}</div>
   </div>
 </div>

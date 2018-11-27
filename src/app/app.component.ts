@@ -28,7 +28,9 @@ export class AppComponent {
     this.images = [];
     this.api.getImages(this.tags).subscribe((data: { items: [] }) => {
       console.log(data);
-      this.images = data.items;
+      this.images = data.items.map((item) => {
+        return { data: item, show: false };
+      });
     });
   }
 }
